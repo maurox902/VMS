@@ -1,0 +1,44 @@
+﻿@page
+@model VMSRazorTest.Pages.User.CreateModel
+
+@{
+    ViewData["Title"] = "Create New User";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-group">
+                <label asp-for="Users.user_id" class="control-label"></label>
+                <input asp-for="Users.user_id" class="form-control" />
+                <span asp-validation-for="Users.user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Users.username" class="control-label"></label>
+                <input asp-for="Users.username" class="form-control" />
+                <span asp-validation-for="Users.username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Users.password" class="control-label"></label>
+                <input asp-for="Users.password" class="form-control" />
+                <span asp-validation-for="Users.password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Users.role_id" class="control-label"></label>
+                <input asp-for="Users.role_id" class="form-control" />
+                <span asp-validation-for="Users.role_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

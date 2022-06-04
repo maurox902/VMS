@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - VMSRazorTest</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="~/plugins/fontawesome-free-6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/adminlte.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/VMSRazorTest.styles.css" asp-append-version="true" />
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a class="brand-link" asp-area="" asp-page="/Index">
+      <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">ITS VSM</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/img/rbermudez.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+            <a class="d-block" asp-area="" asp-page="/Profile/Index">Rodolfo Bermudez</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+               <a class="nav-link" asp-area="" asp-page="/Index"><i class="nav-icon fas fa-tachometer-alt"></i>Dashboard</a>
+          </li>
+             <li class="nav-item">
+                 <a class="nav-link" asp-area="" asp-page="/Profile/Index"><i class="nav-icon fas fa-solid fa-id-card"></i>Profile</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-page="/Reserve/Index"><i class="nav-icon fas fa-th"></i>Book a seat</a>
+          </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-page="/Calendar/Index"><i class="nav-icon far fa-calendar-alt"></i>Calendar</a>
+          </li>
+          <li class="nav-header">CONFIGURATION</li>
+        
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-user"></i>
+              <p>Users<i class="fas fa-angle-left right"></i></p>
+            </a>
+             <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-page="/User/Index"><i class="far fa-circle nav-icon"></i>View Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-page="/Roles/Index"><i class="far fa-circle nav-icon"></i>Roles</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>Modules<i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+               <a class="nav-link" asp-area="" asp-page="/Module/Index"><i class="far fa-circle nav-icon"></i>View Modules</a>
+              </li>
+              <li class="nav-item">
+               <a class="nav-link" asp-area="" asp-page="/Module/Types"><i class="far fa-circle nav-icon"></i>Types</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-chair"></i>
+              <p> Seats<i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-page="/Seat/Index"><i class="far fa-circle nav-icon"></i>View Seats</a>
+              </li>
+              <li class="nav-item">
+               <a class="nav-link" asp-area="" asp-page="/Seat/Types"><i class="far fa-circle nav-icon"></i>Types</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a asp-area="" asp-page="/Index">Home</a></li>
+              <li class="breadcrumb-item active">@ViewData["Title"]</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">@ViewData["Title"]</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          @RenderBody()
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2022 <a href="https://its.cr/">ITS</a>.</strong> All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/adminlte.min.js" asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
