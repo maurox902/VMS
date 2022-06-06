@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace VMSRazorTest.Pages.Reserve
+namespace VMS.Web.Pages.Reserve
 {
     public class IndexModel : PageModel
     {

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using VMS.Web.Data;
-using VMSRazorTest.Models;
+using VMS.Web.Models;
 
-namespace VMSRazorTest.Pages.User.Roles
+namespace VMS.Web.Pages.Roles
 {
     public class DeleteModel : PageModel
     {
-        private readonly VMSRazorTestContext _context;
+        private readonly VMSDataContext _context;
 
-        public DeleteModel(VMSRazorTestContext context)
+        public DeleteModel(VMSDataContext context)
         {
             _context = context;
         }
