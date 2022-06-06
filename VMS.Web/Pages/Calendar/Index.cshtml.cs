@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace VMSRazorTest.Pages.Calendar
+namespace VMS.Web.Pages.Calendar
 {
     public class IndexModel : PageModel
     {

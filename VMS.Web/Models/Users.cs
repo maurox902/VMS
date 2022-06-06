@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace VMSRazorTest.Models
+namespace VMS.Web.Models
 {
     public class Users
     {
