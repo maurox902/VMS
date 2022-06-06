@@ -5,27 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using VMSRazorTest.Data;
+using VMS.Web.Data;
 using VMSRazorTest.Models;
 
-namespace VMSRazorTest.Pages.User.Roles
+namespace VMSRazorTest.Pages.User
 {
     public class IndexModel : PageModel
     {
-        private readonly VMSRazorTest.Data.VMSRazorTestContext _context;
+        private readonly VMSRazorTestContext _context;
 
-        public IndexModel(VMSRazorTest.Data.VMSRazorTestContext context)
+        public IndexModel(VMSRazorTestContext context)
         {
             _context = context;
         }
 
-        public IList<Role> Role { get;set; } = default!;
+        public IList<Users> Users { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Role != null)
+            if (_context.Users != null)
             {
-                Role = await _context.Role.ToListAsync();
+                Users = await _context.Users.ToListAsync();
             }
         }
     }

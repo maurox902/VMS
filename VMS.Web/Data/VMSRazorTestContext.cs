@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VMSRazorTest.Models;
 
-namespace VMSRazorTest.Data
+namespace VMS.Web.Data
 {
     public class VMSRazorTestContext : DbContext
     {
-        public VMSRazorTestContext (DbContextOptions<VMSRazorTestContext> options)
+        public VMSRazorTestContext(DbContextOptions<VMSRazorTestContext> options)
             : base(options)
         {
         }
 
-        public DbSet<VMSRazorTest.Models.Users>? Users { get; set; }
+        public DbSet<Users>? Users { get; set; }
 
-        public DbSet<VMSRazorTest.Models.Role>? Role { get; set; }
+        public DbSet<Role>? Role { get; set; }
     }
 }

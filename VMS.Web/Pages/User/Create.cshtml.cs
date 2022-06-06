@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using VMSRazorTest.Data;
+using VMS.Web.Data;
 using VMSRazorTest.Models;
 
 namespace VMSRazorTest.Pages.User
 {
     public class CreateModel : PageModel
     {
-        private readonly VMSRazorTest.Data.VMSRazorTestContext _context;
+        private readonly VMSRazorTestContext _context;
 
-        public CreateModel(VMSRazorTest.Data.VMSRazorTestContext context)
+        public CreateModel(VMSRazorTestContext context)
         {
             _context = context;
         }

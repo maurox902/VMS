@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using VMSRazorTest.Data;
+using VMS.Web.Data;
 using VMSRazorTest.Models;
 
 namespace VMSRazorTest.Pages.User
 {
     public class DetailsModel : PageModel
     {
-        private readonly VMSRazorTest.Data.VMSRazorTestContext _context;
+        private readonly VMSRazorTestContext _context;
 
-        public DetailsModel(VMSRazorTest.Data.VMSRazorTestContext context)
+        public DetailsModel(VMSRazorTestContext context)
         {
             _context = context;
         }

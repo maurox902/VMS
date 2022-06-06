@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using VMSRazorTest.Data;
+using VMS.Web.Data;
 using VMSRazorTest.Models;
 
 namespace VMSRazorTest.Pages.User.Roles
 {
     public class EditModel : PageModel
     {
-        private readonly VMSRazorTest.Data.VMSRazorTestContext _context;
+        private readonly VMSRazorTestContext _context;
 
-        public EditModel(VMSRazorTest.Data.VMSRazorTestContext context)
+        public EditModel(VMSRazorTestContext context)
         {
             _context = context;
         }
