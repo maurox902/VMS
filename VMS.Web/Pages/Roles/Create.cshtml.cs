@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using VMS.Web.Data;
-using VMS.Web.Models;
+using VMS.Entities;
+using VMS.Repository;
 
 namespace VMS.Web.Pages.Roles
 {
     public class CreateModel : PageModel
     {
-        private readonly VMSDataContext _context;
+        private readonly VMSDatabaseContext dbContext;
 
-        public CreateModel(VMSDataContext context)
+        public CreateModel(VMSDatabaseContext vmsDatabaseContext)
         {
-            _context = context;
+            this.dbContext = vmsDatabaseContext;
         }
 
         public IActionResult OnGet()
@@ -19,20 +19,19 @@ namespace VMS.Web.Pages.Roles
             return Page();
         }
 
-        [BindProperty]
-        public Role Role { get; set; } = default!;
-        
+        [BindProperty] public Role Role { get; set; } = default!;
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Role == null || Role == null)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Role.Add(Role);
-            await _context.SaveChangesAsync();
+            dbContext.Roles.Add(Role);
+            await dbContext.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

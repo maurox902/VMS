@@ -1,30 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using VMS.Web.Data;
-using VMS.Web.Models;
+using VMS.Entities;
+using VMS.Repository;
 
 namespace VMS.Web.Pages.Roles
 {
     public class DetailsModel : PageModel
     {
-        private readonly VMSDataContext _context;
+        private readonly VMSDatabaseContext dbContext;
 
-        public DetailsModel(VMSDataContext context)
+        public DetailsModel(VMSDatabaseContext vmsDatabaseContext)
         {
-            _context = context;
+            this.dbContext = vmsDatabaseContext;
         }
 
       public Role Role { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Role == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var role = await _context.Role.FirstOrDefaultAsync(m => m.role_id == id);
+            var role = await dbContext.Roles.FirstOrDefaultAsync(m => m.RolId == id);
             if (role == null)
             {
                 return NotFound();

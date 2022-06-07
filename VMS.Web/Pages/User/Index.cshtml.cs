@@ -1,27 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using VMS.Web.Data;
-using VMS.Web.Models;
+using VMS.Repository;
 
 namespace VMS.Web.Pages.User
 {
     public class IndexModel : PageModel
     {
-        private readonly VMSDataContext _context;
+        private readonly VMSDatabaseContext dbContext;
 
-        public IndexModel(VMSDataContext context)
+        public IndexModel(VMSDatabaseContext vmsDatabaseContext)
         {
-            _context = context;
+            this.dbContext = vmsDatabaseContext;
         }
 
-        public IList<Users> Users { get;set; } = default!;
+        public IList<Entities.User> Users { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Users != null)
-            {
-                Users = await _context.Users.ToListAsync();
-            }
+            Users = await dbContext.Users.ToListAsync();
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VMS.Web.Data;
+using VMS.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<VMSDataContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("VMSDataContext") ?? throw new InvalidOperationException("Connection string 'VMSDataContext' not found.")));
+builder.Services.AddDbContext<VMSDatabaseContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("VMSDatabaseContext") ?? throw new InvalidOperationException("Connection string 'VMSDataContext' not found.")));
 
 var app = builder.Build();
 
