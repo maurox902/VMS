@@ -1,27 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using VMS.Web.Data;
-using VMS.Web.Models;
+using VMS.Entities;
+using VMS.Repository;
 
 namespace VMS.Web.Pages.Roles
 {
     public class IndexModel : PageModel
     {
-        private readonly VMSDataContext _context;
+        private readonly VMSDatabaseContext dbContext;
 
-        public IndexModel(VMSDataContext context)
+        public IndexModel(VMSDatabaseContext vmsDatabaseContext)
         {
-            _context = context;
+            this.dbContext = vmsDatabaseContext;
         }
 
         public IList<Role> Role { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Role != null)
-            {
-                Role = await _context.Role.ToListAsync();
-            }
+            Role = await dbContext.Roles.ToListAsync();
         }
     }
 }

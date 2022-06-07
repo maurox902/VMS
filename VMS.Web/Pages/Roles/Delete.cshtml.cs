@@ -1,56 +1,55 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using VMS.Web.Data;
-using VMS.Web.Models;
+using VMS.Entities;
+using VMS.Repository;
 
 namespace VMS.Web.Pages.Roles
 {
     public class DeleteModel : PageModel
     {
-        private readonly VMSDataContext _context;
+        private readonly VMSDatabaseContext dbContext;
 
-        public DeleteModel(VMSDataContext context)
+        public DeleteModel(VMSDatabaseContext vmsDatabaseContext)
         {
-            _context = context;
+            this.dbContext = vmsDatabaseContext;
         }
 
-        [BindProperty]
-      public Role Role { get; set; } = default!;
+        [BindProperty] public Role Role { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Role == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var role = await _context.Role.FirstOrDefaultAsync(m => m.role_id == id);
+            var role = await dbContext.Roles.FirstOrDefaultAsync(m => m.RolId == id);
 
             if (role == null)
             {
                 return NotFound();
             }
-            else 
-            {
-                Role = role;
-            }
+
+            Role = role;
+
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Role == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var role = await _context.Role.FindAsync(id);
+
+            var role = await dbContext.Roles.FindAsync(id);
 
             if (role != null)
             {
                 Role = role;
-                _context.Role.Remove(Role);
-                await _context.SaveChangesAsync();
+                dbContext.Roles.Remove(Role);
+                await dbContext.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");

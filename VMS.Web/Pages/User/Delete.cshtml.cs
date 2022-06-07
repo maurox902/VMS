@@ -1,31 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using VMS.Web.Data;
-using VMS.Web.Models;
+using VMS.Repository;
 
 namespace VMS.Web.Pages.User
 {
     public class DeleteModel : PageModel
     {
-        private readonly VMSDataContext _context;
+        private readonly VMSDatabaseContext dbContext;
 
-        public DeleteModel(VMSDataContext context)
+        public DeleteModel(VMSDatabaseContext vmsDatabaseContext)
         {
-            _context = context;
+            this.dbContext = vmsDatabaseContext;
         }
 
         [BindProperty]
-      public Users Users { get; set; } = default!;
+      public Entities.User Users { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Users == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var users = await _context.Users.FirstOrDefaultAsync(m => m.user_id == id);
+            var users = await dbContext.Users.FirstOrDefaultAsync(m => m.UserId == id);
 
             if (users == null)
             {
@@ -40,17 +39,17 @@ namespace VMS.Web.Pages.User
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Users == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var users = await _context.Users.FindAsync(id);
+            var users = await dbContext.Users.FindAsync(id);
 
             if (users != null)
             {
                 Users = users;
-                _context.Users.Remove(Users);
-                await _context.SaveChangesAsync();
+                dbContext.Users.Remove(Users);
+                await dbContext.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");

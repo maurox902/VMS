@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using VMS.Web.Data;
-using VMS.Web.Models;
+using VMS.Repository;
 
 namespace VMS.Web.Pages.User
 {
     public class CreateModel : PageModel
     {
-        private readonly VMSDataContext _context;
+        private readonly VMSDatabaseContext dbContext;
 
-        public CreateModel(VMSDataContext context)
+        public CreateModel(VMSDatabaseContext vmsDatabaseContext)
         {
-            _context = context;
+            this.dbContext = vmsDatabaseContext;
         }
 
         public IActionResult OnGet()
@@ -20,19 +19,19 @@ namespace VMS.Web.Pages.User
         }
 
         [BindProperty]
-        public Users Users { get; set; } = default!;
+        public Entities.User Users { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Users == null || Users == null)
+          if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Users.Add(Users);
-            await _context.SaveChangesAsync();
+            dbContext.Users.Add(Users);
+            await dbContext.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

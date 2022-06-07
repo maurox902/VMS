@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using VMS.Web.Data;
-using VMS.Web.Models;
+using VMS.Entities;
+using VMS.Repository;
 
 namespace VMS.Web.Pages.Roles
 {
     public class EditModel : PageModel
     {
-        private readonly VMSDataContext _context;
+        private readonly VMSDatabaseContext dbContext;
 
-        public EditModel(VMSDataContext context)
+        public EditModel(VMSDatabaseContext vmsDatabaseContext)
         {
-            _context = context;
+            this.dbContext = vmsDatabaseContext;
         }
 
         [BindProperty]
@@ -20,12 +20,12 @@ namespace VMS.Web.Pages.Roles
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Role == null)
+            if (id == null || dbContext.Roles == null)
             {
                 return NotFound();
             }
 
-            var role =  await _context.Role.FirstOrDefaultAsync(m => m.role_id == id);
+            var role =  await dbContext.Roles.FirstOrDefaultAsync(m => m.RolId == id);
             if (role == null)
             {
                 return NotFound();
@@ -43,15 +43,15 @@ namespace VMS.Web.Pages.Roles
                 return Page();
             }
 
-            _context.Attach(Role).State = EntityState.Modified;
+            dbContext.Attach(Role).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RoleExists(Role.role_id))
+                if (!RoleExists(Role.RolId))
                 {
                     return NotFound();
                 }
@@ -66,7 +66,7 @@ namespace VMS.Web.Pages.Roles
 
         private bool RoleExists(int id)
         {
-          return (_context.Role?.Any(e => e.role_id == id)).GetValueOrDefault();
+          return (dbContext.Roles?.Any(e => e.RolId == id)).GetValueOrDefault();
         }
     }
 }
