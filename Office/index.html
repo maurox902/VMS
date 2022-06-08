@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A simple example</title>
+    <link rel="stylesheet" href="./assets/pannellum/pannellum.css"/>
+    <script type="text/javascript" src="./assets/pannellum/pannellum.js"></script>
+    <style>
+    #panorama {
+        width: 1080px;
+        height: 600px;
+    }
+    </style>
+</head>
+<body>
+
+<div id="panorama"></div>
+<script>
+pannellum.viewer('panorama', {
+    "default": {
+        "firstScene": "entrance",
+        "author": "VMS Team",
+        "sceneFadeDuration": 1000,
+        "autoLoad": true
+    },
+
+    "scenes": {
+        "entrance": {
+            "title": "ITS Entrance",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "./assets/images/20220606_013045437_iOS.png",
+            "hotSpots": [
+                {
+                    "pitch": 20.1,
+                    "yaw": -70.0,
+                    "type": "scene",
+                    "text": "West View",
+                    "sceneId": "west"
+                },
+                {
+                    "pitch": 20.1,
+                    "yaw": 20.0,
+                    "type": "scene",
+                    "text": "North View",
+                    "sceneId": "north"
+                },
+                {
+                    "pitch": 0.1,
+                    "yaw": 132.9,
+                    "type": "scene",
+                    "text": "East View",
+                    "sceneId": "east"
+                }
+            ]
+        },
+        "west": {
+            "title": "ITS West View",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "./assets/images/20220606_013127509_iOS.png",
+            "hotSpots": [
+                {
+                    "pitch": 10.1,
+                    "yaw": 20.0,
+                    "type": "scene",
+                    "text": "North View",
+                    "sceneId": "north"
+                },
+                {
+                    "pitch": 0.1,
+                    "yaw": 110.9,
+                    "type": "scene",
+                    "text": "ITS Entrance",
+                    "sceneId": "entrance"
+                }
+            ]
+        },
+        "north": {
+            "title": "ITS North View",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "./assets/images/20220606_013214212_iOS.png",
+            "hotSpots": [
+            {
+                    "pitch": 10.1,
+                    "yaw": -70.0,
+                    "type": "scene",
+                    "text": "East View",
+                    "sceneId": "east"
+                },
+                {
+                    "pitch": 0.1,
+                    "yaw": -5.0,
+                    "type": "scene",
+                    "text": "ITS Entrance",
+                    "sceneId": "entrance"
+                },
+                {
+                    "pitch": 0.1,
+                    "yaw": 90.0,
+                    "type": "scene",
+                    "text": "West View",
+                    "sceneId": "west"
+                }
+            ]
+        },
+        "east": {
+            "title": "ITS East View",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "./assets/images/20220606_013423979_iOS.png",
+            "hotSpots": [
+                {
+                    "pitch": 15.1,
+                    "yaw": -120.0,
+                    "type": "scene",
+                    "text": "North View",
+                    "sceneId": "north"
+                }
+            ]
+        },
+        
+    }
+
+
+});
+</script>
+
+</body>
+</html>
