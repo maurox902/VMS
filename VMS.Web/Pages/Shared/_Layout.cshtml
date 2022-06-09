@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewData["Title"] - VMS.Web</title>
+    <title>@ViewData["Title"] - VMS</title>
+    <link rel="icon" type="image/x-icon" href="/img/ITSLogo.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="~/plugins/fontawesome-free-6.1.1/css/all.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -18,8 +19,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a class="brand-link" asp-area="" asp-page="/Index">
-      <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">ITS VSM</span>
+      <img src="/img/ITSLogo.png" alt="AdminLTE Logo" class="brand-image">
+      <span class="brand-text font-weight-light">VMS</span>
     </a>
 
     <!-- Sidebar -->
@@ -50,7 +51,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-               <a class="nav-link" asp-area="" asp-page="/Index"><i class="nav-icon fas fa-tachometer-alt"></i>Dashboard</a>
+               <a class="nav-link" asp-area="" asp-page="/Index"><i class="nav-icon fa-solid fa-house-user"></i>Home</a>
           </li>
              <li class="nav-item">
                  <a class="nav-link" asp-area="" asp-page="/Profile/Index"><i class="nav-icon fas fa-solid fa-id-card"></i>Profile</a>
