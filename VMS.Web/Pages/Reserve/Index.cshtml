@@ -4,113 +4,90 @@
 	ViewData["Title"] = "Book a Seat";
 }
 
-<html>
-<head>
-<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<script src="/js/jquery-1.11.0.min.js"></script>
-<script src="/js/jquery.seat-charts.js"></script>
-</head>
-<body>
-		<div class="demo">
-			<div id="seat-map">
-				<div class="front">Office Map</div>					
-			</div>
-			<div class="booking-details">
-				<ul class="book-left">
-					<li># Seats</li>
-					<li>Seats :</li>
-				</ul>
-				<ul class="book-right">
-					<li>: <span id="counter">0</span></li>
-				</ul>
-				<div class="clear"></div>
-				<ul id="selected-seats" class="scrollbar scrollbar1"></ul>
-			
-						
-				<button class="checkout-button">Book Now</button>	
-				<div id="legend"></div>
-			</div>
-			<div style="clear:both"></div>
-	    </div>
+<link rel="stylesheet" href="~/css/seatchart.css" asp-append-version="true" type="text/css" media="all" />
+ 
+<div id="container"></div>
 
-			<script type="text/javascript">
-				var price = 10; //price
-				$(document).ready(function() {
-					var $cart = $('#selected-seats'), //Sitting Area
-					$counter = $('#counter'), //Votes
-					$total = $('#total'); //Total money
-					
-					var sc = $('#seat-map').seatCharts({
-						map: [  //Seating chart
-							'aaaaaaaaaa',
-							'aaaaaaaaaa',
-							'__________',
-							'aaaaaaaa__',
-							'aaaaaaaaaa',
-							'aaaaaaaaaa',
-							'aaaaaaaaaa',
-							'aaaaaaaaaa',
-							'aaaaaaaaaa',
-							'__aaaaaa__'
-						],
-						naming : {
-							top : false,
-							getLabel : function (character, row, column) {
-								return column;
-							}
-						},
-						legend : { //Definition legend
-							node : $('#legend'),
-							items : [
-								[ 'a', 'available',   'Available' ],
-								[ 'a', 'unavailable', 'Not Available'],
-								[ 'a', 'selected', 'Selected']
-							]					
-						},
-						click: function () { //Click event
-							if (this.status() == 'available') { //optional seat
-								$('<li>Row'+(this.settings.row+1)+' Seat'+this.settings.label+'</li>')
-									.attr('id', 'cart-item-'+this.settings.id)
-									.data('seatId', this.settings.id)
-									.appendTo($cart);
+    <script src="~/js/seatchart.js" asp-append-version="true"></script>
+    <script>
+      var options = {
+        map: {
+          rows: 10,
+          columns: 10,
+          seatTypes: {
+            default: {
+              label: 'Entrance',
+              cssClass: 'entrance',
+             seatRows: [0, 1, 2],
+            },
+            west: {
+              label: 'West',
+              cssClass: 'west',
+             seatRows: [3, 4, 5],
+            },
+            north: {
+              label: 'North',
+              cssClass: 'north',
+              seatRows: [6, 7, 8],
+            },
+            east: {
+              label: 'East',
+              cssClass: 'east',
+              seatRows: [9, 10],
+            },
+          },
+          disabledSeats: [
+            // Entrance
+            { row: 0, col: 0 },
+            { row: 0, col: 4 },
+            { row: 0, col: 5 },
+            { row: 0, col: 9 },
+            { row: 2, col: 0 },
+            { row: 2, col: 4 },
+            { row: 2, col: 5 },
+            { row: 2, col: 9 },
+            
 
-								$counter.text(sc.find('selected').length+1);
-								$total.text(recalculateTotal(sc)+price);
-											
-								return 'selected';
-							} else if (this.status() == 'selected') { //Checked
-									//Update Number
-									$counter.text(sc.find('selected').length-1);
-									//update totalnum
-									$total.text(recalculateTotal(sc)-price);
-										
-									//Delete reservation
-									$('#cart-item-'+this.settings.id).remove();
-									//optional
-									return 'available';
-							} else if (this.status() == 'unavailable') { //sold
-								return 'unavailable';
-							} else {
-								return this.style();
-							}
-						}
-					});
-					//sold seat
-					sc.get(['1_2', '4_4','4_5','6_6','6_7','8_5','8_6','8_7','8_8', '10_1', '10_2']).status('unavailable');
-						
-				});
-				//sum total money
-				function recalculateTotal(sc) {
-					var total = 0;
-					sc.find('selected').each(function () {
-						total += price;
-					});
-							
-					return total;
-				}
-			</script>
-<script src="/js/jquery.nicescroll.js"></script>
-<script src="/js/scripts.js"></script>
-</body>
-</html>
+            // West
+            { row: 3, col: 0 },
+            { row: 3, col: 4 },
+            { row: 3, col: 5 },
+            { row: 3, col: 9 },
+            { row: 5, col: 0 },
+            { row: 5, col: 4 },
+            { row: 5, col: 5 },
+            { row: 5, col: 9 },
+            
+
+            // North
+            { row: 6, col: 0 },
+            { row: 6, col: 4 },
+            { row: 6, col: 5 },
+            { row: 6, col: 9 },
+            { row: 8, col: 0 },
+            { row: 8, col: 4 },
+            { row: 8, col: 5 },
+            { row: 8, col: 9 },
+          ],
+          reservedSeats: [
+            { row: 0, col: 3 },
+            { row: 0, col: 4 },
+          ],
+          //selectedSeats: [{ row: 0, col: 5 }, { row: 0, col: 6 }],
+          rowSpacers: [3, 6, 9],
+          columnSpacers: [5],
+        },
+      };
+
+      var element = document.getElementById('container');
+      var sc = new Seatchart(element, options);
+      sc.addEventListener('submit', function handleSubmit(e) {
+        //alert('Total: ' + e.total + '€');
+        alert('Your reservation has been completed.');
+      });
+    </script>
+<script src="~/js/jquery-1.11.0.min.js" asp-append-version="true"></script>
+<script src="~/js/jquery.nicescroll.js" asp-append-version="true"></script>
+<script src="~/js/scripts.js" asp-append-version="true"></script>
+
 
